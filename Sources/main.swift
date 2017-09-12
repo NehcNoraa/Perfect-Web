@@ -10,14 +10,24 @@ var routes = Routes()
 routes.add(method: .get, uri: "/", handler: {
     request, response in
     response.setHeader(.contentType, value: "text/html")
-    response.appendBody(string: "<html><title>My first swift web App.</title><body>Hello World</body></html>")
+    response.appendBody(string: "<html><title>My First swift web App.</title><body>Hello World</body></html>")
     response.completed()
 }
 )
 
+var routes2 = Routes()
+routes2.add(method: .get, uri: "/sec", handler: {
+    request, response in
+    response.setHeader(.contentType, value: "text/html")
+    response.appendBody(string: "<html><title>My Section Page.</title><body>Hello Swift!</body></html>")
+    response.completed()
+}
+)
+
+server.serverName = "localhost"
 // 将路由注册到服务器上
 server.addRoutes(routes)
-
+server.addRoutes(routes2)
 // 监听8181端口
 server.serverPort = 8181
 
